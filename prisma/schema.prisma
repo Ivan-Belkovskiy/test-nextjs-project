@@ -1,0 +1,78 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model elevators {
+  floor      Int?
+  name       String
+  direction  Int?
+  blocked    Boolean?
+  stuck      Int?
+  id         Int?
+  play_intro Int?
+
+  @@ignore
+}
+
+model filetransferapp__files {
+  id          Int       @id @default(autoincrement())
+  filename    String    @unique
+  size        BigInt?
+  type        String?
+  upload_date DateTime? @default(now()) @db.Timestamp(6)
+  hidden      Boolean?  @default(false)
+}
+
+model learn_expressjs__tasks {
+  id                     Int                     @id @default(autoincrement())
+  name                   String
+  description            String?
+  completed              Boolean?                @default(false)
+  user_id                Int?
+  learn_expressjs__users learn_expressjs__users? @relation(fields: [user_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+}
+
+model learn_expressjs__users {
+  id                     Int                      @id @default(autoincrement())
+  email                  String                   @unique @db.VarChar(255)
+  password_hash          String                   @db.VarChar(255)
+  created_at             DateTime?                @default(now()) @db.Timestamp(6)
+  learn_expressjs__tasks learn_expressjs__tasks[]
+}
+
+model simple_task_manager__subtasks {
+  id                         Int                        @id @default(autoincrement())
+  task_id                    Int
+  name                       String
+  completed                  Boolean?                   @default(false)
+  created_at                 DateTime?                  @default(now()) @db.Timestamptz(6)
+  updated_at                 DateTime?                  @db.Timestamptz(6)
+  simple_task_manager__tasks simple_task_manager__tasks @relation(fields: [task_id], references: [id], onDelete: Cascade, onUpdate: NoAction)
+
+  @@index([task_id], map: "idx_subtasks_task_id")
+}
+
+model simple_task_manager__tasks {
+  id                            Int                             @id @default(autoincrement())
+  name                          String
+  description                   String?
+  category                      String?                         @default("main")
+  completed                     Boolean?                        @default(dbgenerated("(complete_percent >= 100)"))
+  complete_percent              Int?                            @default(0)
+  created_at                    DateTime?                       @default(now()) @db.Timestamptz(6)
+  simple_task_manager__subtasks simple_task_manager__subtasks[]
+}
+
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by Prisma Client.
+model temp {
+  id  Int?
+  tmp String
+  pmt String
+
+  @@ignore
+}

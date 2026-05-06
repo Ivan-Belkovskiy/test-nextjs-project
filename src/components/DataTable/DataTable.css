@@ -1,0 +1,21 @@
+.update-container {
+    padding: 0;
+}
+
+.update-btn {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    background-color: #116800;
+    color: #fff;
+    padding: 9px 0;
+    font-size: 20px;
+    transition: all 0.3s ease 0s;
+}
+
+.update-btn:hover {
+    background-color: #2bff00;
+    color: #105e00;
+}
