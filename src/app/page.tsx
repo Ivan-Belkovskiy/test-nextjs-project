@@ -1,6 +1,7 @@
 import Counter from "@/components/Counter/Counter";
 import CounterBlock from "@/components/CounterBlock/CounterBlock";
-import DataTable from "@/components/DataTable/DataTable";
+// import DataTable from "@/components/DataTable/DataTable";
+import { simple_task_manager__tasksModel } from "@/generated/prisma/models";
 import { prisma } from "@/lib/prisma";
 import Image from "next/image";
 
@@ -18,13 +19,13 @@ export default async function Home() {
             <table>
               <thead>
                 <tr>
-                  {columns.map((col, idx) => (
+                  {columns.map((col: string, idx: number) => (
                     <th key={idx}>{col}</th>
                   ))}
                 </tr>
               </thead>
               <tbody>
-                {data.map((item, idx) => (
+                {data.map((item: simple_task_manager__tasksModel, idx: number) => (
                   <tr key={idx}>
                     {Object.values(item).map((val, i) => (
                       <td key={i}>{String(val)}</td>
