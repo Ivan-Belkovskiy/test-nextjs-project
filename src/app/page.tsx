@@ -16,7 +16,7 @@ export default async function Home() {
         <div className="content flex flex-col items-center gap-10">
           <CounterBlock />
           <div className="data-block flex flex-col gap-5 items-center border-solid border-1 rounded-[5px] p-3">
-            <table>
+            {/* <table>
               <thead>
                 <tr>
                   {columns.map((col: string, idx: number) => (
@@ -39,7 +39,7 @@ export default async function Home() {
                   <th>{data.length}</th>
                 </tr>
               </tfoot>
-            </table>
+            </table> */}
             {/* {data.map((item, idx) => (
               <li key={idx}>{item.name}</li>
             ))} */}
