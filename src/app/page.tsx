@@ -1,9 +1,9 @@
 import Counter from "@/components/Counter/Counter";
 import CounterBlock from "@/components/CounterBlock/CounterBlock";
 // import DataTable from "@/components/DataTable/DataTable";
-import { simple_task_manager__tasksModel } from "@/generated/prisma/models";
+// import { simple_task_manager__tasksModel } from "@/generated/prisma/models";
 import { prisma } from "@/lib/prisma";
-import Image from "next/image";
+// import Image from "next/image";
 
 export default async function Home() {
   const columns = Object.keys(prisma.simple_task_manager__tasks.fields);
